@@ -136,7 +136,7 @@ The workflow logs every inquiry with the following columns:
 
 | Nama Lengkap | Nomor WhatsApp | Jenis Layanan | Tanggal Diinginkan | Catatan Tambahan |
 |---|---|---|---|---|
-| John Doe | 08123456789 | Redesign Website | 2026-04-07 | ... |
+| Achmad Djunaedi | 031267908 | Redesign Website | 2026-04-07 | ... |
 
 ***
 
@@ -157,6 +157,10 @@ umkm-inquiry-notifier/
 ├── workflow.json          ← n8n exported workflow (import directly)
 └── assets/
     └── workflow-screenshot.png
+    └── form-preview.png
+    └── sheets-preview.png
+    └── gmail-preview.png
+    └── telegram-preview.png
 ```
 
 ***
