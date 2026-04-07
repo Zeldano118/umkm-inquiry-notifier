@@ -126,6 +126,8 @@ mendiskusikan konsep dan estimasi biaya.
 | `TELEGRAM_CHAT_ID` | [@userinfobot on Telegram](https://t.me/userinfobot) |
 | Google OAuth | n8n Credentials → Google OAuth2 |
 
+> ⚠️ **Important:** After importing `workflow.json`, all credentials (Groq, Telegram, and Google OAuth) need to be reconnected using your own accounts in n8n Credentials settings. The workflow file does not store any API keys or tokens.
+
 ***
 
 ## 📊 Google Sheets Structure
