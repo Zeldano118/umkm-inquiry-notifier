@@ -1,0 +1,344 @@
+{
+  "name": "workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Form Inquiry Layanan",
+        "formDescription": "Isi form ini untuk pesan layanan kami. Kami akan menghubungi kamu segera! 😊",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nama Lengkap",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nomor Whatsapp",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Jenis Layanan",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Tanggal Diinginkan",
+              "fieldType": "date"
+            },
+            {
+              "fieldLabel": "Catatan Tambahan",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "107a2392-5d9d-4a04-9811-11747826a5c4",
+      "name": "On form submission",
+      "webhookId": "cbcfab25-b8f7-40b1-a2aa-0d303bb2932b"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ae917442-f480-4787-935c-09340a12d794",
+              "leftValue": "={{ $json['Nama Lengkap'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "e6e5d08a-201e-4391-ba09-8bb8728ccd33",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1pvfceEQR2nnaCl05PkaafbMD1XDuRkKaW5XkLZkicYo",
+          "mode": "list",
+          "cachedResultName": "Inquiry UMKM",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pvfceEQR2nnaCl05PkaafbMD1XDuRkKaW5XkLZkicYo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pvfceEQR2nnaCl05PkaafbMD1XDuRkKaW5XkLZkicYo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama Lengkap": "={{ $json['Nama Lengkap'] }}",
+            "Nomor Whatsapp": "={{ $json['Nomor Whatsapp'] }}",
+            "Jenis Layanan": "={{ $json['Jenis Layanan'] }}",
+            "Tanggal Diinginkan": "={{ $json['Tanggal Diinginkan'] }}",
+            "Catatan Tambahan": "={{ $json['Catatan Tambahan'] }}",
+            "Email": "={{ $json.Email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nama Lengkap",
+              "displayName": "Nama Lengkap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nomor Whatsapp",
+              "displayName": "Nomor Whatsapp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Jenis Layanan",
+              "displayName": "Jenis Layanan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Tanggal Diinginkan",
+              "displayName": "Tanggal Diinginkan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Catatan Tambahan",
+              "displayName": "Catatan Tambahan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "4bbcff19-453a-41be-9f33-b1df225acad5",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DEnnrwzrvjEH9qDf",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "1359337540",
+        "text": "=🔔 *Inquiry Baru Masuk!*\n\n👤 *Nama:* {{ $('On form submission').item.json['Nama Lengkap'] }}\n📱 *WhatsApp:* {{ $('On form submission').item.json['Nomor Whatsapp'] }}\n🛠️ *Layanan:* {{ $('On form submission').item.json['Jenis Layanan'] }}\n📅 *Tanggal:* {{ $('On form submission').item.json['Tanggal Diinginkan'] }}\n📝 *Catatan:* {{ $('On form submission').item.json['Catatan Tambahan'] || 'Tidak ada' }}\n\n🤖 *Analisis AI:*\n{{ $('HTTP Request').item.json.choices[0].message.content }}\n\n⏰ *Masuk:* {{ $now.toLocaleString() }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        624,
+        192
+      ],
+      "id": "71fb5622-d0e0-430d-b8c1-1c431e20a107",
+      "name": "Send a text message",
+      "webhookId": "bea291f0-86f2-4df6-873d-3680c74df74f",
+      "credentials": {
+        "telegramApi": {
+          "id": "tQ6fH7XD88Mbgt9v",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').item.json.Email }}",
+        "subject": "=✅ Inquiry kamu sudah kami terima,  {{ $('On form submission').item.json['Nama Lengkap'] }}!!",
+        "message": "=<h2>Halo, {{ $('On form submission').item.json['Nama Lengkap'] }}! 👋</h2>\n\n<p>Terima kasih sudah menghubungi kami! Kami sudah menerima inquiry kamu dan akan segera menghubungi kamu melalui WhatsApp dalam waktu <strong>1x24 jam</strong>.</p>\n\n<p>Berikut detail yang kami terima:</p>\n\n<table border=\"1\" cellpadding=\"8\" cellspacing=\"0\" style=\"border-collapse:collapse;\">\n  <tr style=\"background:#f5f5f5\"><td><b>Nama</b></td><td>{{ $('On form submission').item.json['Nama Lengkap'] }}</td></tr>\n  <tr><td><b>WhatsApp</b></td><td>{{ $('On form submission').item.json['Nomor Whatsapp'] }}</td></tr>\n  <tr style=\"background:#f5f5f5\"><td><b>Layanan</b></td><td>{{ $('On form submission').item.json['Jenis Layanan'] }}</td></tr>\n  <tr><td><b>Tanggal</b></td><td>{{ $('On form submission').item.json['Tanggal Diinginkan'] }}</td></tr>\n</table>\n\n<br>\n<p>Sampai jumpa! 😊</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "7580cd79-c6d4-4ebc-94cd-eacaade8d38d",
+      "name": "Send a message",
+      "webhookId": "70fef4c0-b36d-43d3-bad9-a2c7714843d1",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "km7LxRwExiJD07Ml",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_GROQ_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Analisis inquiry UMKM berikut. Jawab Bahasa Indonesia dengan format PERSIS seperti ini:\\n\\n⚡ *Prioritas:* [TINGGI/SEDANG/RENDAH]\\n\\n📋 *Ringkasan:*\\n[2 kalimat ringkasan]\\n\\n💬 *Saran Follow-up:*\\n[1 kalimat saran]\\n\\nData inquiry:\\nNama: {{ $('On form submission').item.json['Nama Lengkap'] }}\\nLayanan: {{ $('On form submission').item.json['Jenis Layanan'] }}\\nTanggal: {{ $('On form submission').item.json['Tanggal Diinginkan'] }}\\nCatatan: {{ $('On form submission').item.json['Catatan Tambahan'] || 'Tidak ada' }}\\n\\nPENTING: Ikuti format di atas persis, jangan tambah kalimat pembuka apapun.\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        192
+      ],
+      "id": "6539c83f-0490-440c-9fcb-06c7451520e4",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "Nama Lengkap": "Zeldano Shan Oeffie",
+          "Nomor Whatsapp": "08111551856",
+          "Email": "zeldanooeffie@gmail.com",
+          "Jenis Layanan": "Redesign Website",
+          "Tanggal Diinginkan": "2026-04-07",
+          "Catatan Tambahan": "Tolong redesign website saya",
+          "submittedAt": "2026-04-07T07:32:59.429+07:00",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9812b4bf-b754-4224-81b4-97f422b350ce",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49599cc19c4ee941fbff3e22d2a0ac7d2e989e40a1c7572af55d761d5e46e4fd"
+  },
+  "id": "my2gdTQgSn1TwFpS",
+  "tags": []
+}
