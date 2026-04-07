@@ -163,7 +163,7 @@ umkm-inquiry-notifier/
 
 **Zeldano Shan Oeffie**  
 📧 [kerjaanzeldano@gmail.com](mailto:kerjaanzeldano@gmail.com)  
-✍️ [Medium](https://medium.com/@zeldano118)  
+✍️ [Medium](https://medium.com/@kerjaanzeldano)  
 🔗 [GitHub](https://github.com/zeldano118)
 
 ***
